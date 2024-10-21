@@ -39,7 +39,7 @@ chatHandler.post("/", async (c: Context) => {
 
   chat.chats.push(newChat);
   for (const ws of wsConnections) {
-    if(ws.target.readyState != 1) {
+    if (ws.target.readyState != 1) {
       continue;
     }
     ws.target.send(html`
@@ -58,21 +58,24 @@ chatHandler.post("/", async (c: Context) => {
   return c.text("OK");
 });
 
-chatHandler.get("/ws", upgradeWebSocket((_c) => {
-  return {
-    onOpen: (ws) => {
-      console.log("WebSocket opened");
-      wsConnections.push(ws);
-    },
-    onMessage: (event, ws) => {
-      console.log('ws', ws)
-      console.log('message', event.data);
-      ws.send('received');
-    },
-    onClose: () => {
-      console.log("WebSocket closed");
-    },
-  }
-}));
+chatHandler.get(
+  "/ws",
+  upgradeWebSocket((_c) => {
+    return {
+      onOpen: (ws) => {
+        console.log("WebSocket opened");
+        wsConnections.push(ws);
+      },
+      onMessage: (event, ws) => {
+        console.log("ws", ws);
+        console.log("message", event.data);
+        ws.send("received");
+      },
+      onClose: () => {
+        console.log("WebSocket closed");
+      },
+    };
+  }),
+);
 
 export default chatHandler;
