@@ -21,6 +21,8 @@ export const Chat: FC<ChatRoomProps> = (props: ChatRoomProps) => {
       <div
         className="flex flex-1 flex-col p-2 border border-black"
         id="chat-list"
+        hx-ext="ws"
+        ws-connect="/chat/ws"
       >
         {props.chats.map((chat, index) => <ChatItem key={index} {...chat} />)}
       </div>
