@@ -4,7 +4,7 @@ export type ChatItemProps = {
   date: string;
   user: string;
   message: string;
-}
+};
 
 export const ChatItem: FC<ChatItemProps> = (props: ChatItemProps) => {
   return (
@@ -17,5 +17,5 @@ export const ChatItem: FC<ChatItemProps> = (props: ChatItemProps) => {
         <p>{props.message}</p>
       </div>
     </div>
-  )
-}
+  );
+};

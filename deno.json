@@ -6,7 +6,8 @@
   "tasks": {
     "build:css": "deno run -A npm:tailwindcss build -i src/input.css -o public/style.css --watch",
     "dev": "deno run -RNE --watch --env main.tsx",
-    "start": "deno run --allow-net main.ts"
+    "start": "deno run --allow-net main.ts",
+    "format": "deno fmt --ignore=public"
   },
   "compilerOptions": {
     "jsx": "precompile",
