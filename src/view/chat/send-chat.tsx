@@ -21,7 +21,6 @@ export const SendChat: FC = () => {
           />
           <button
             hx-post="/chat"
-            // hx-target="#chat-list"
             hx-swap="none"
             className="button bg-black text-white py-2 px-3"
           >

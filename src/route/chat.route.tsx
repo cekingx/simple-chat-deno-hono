@@ -36,6 +36,7 @@ chatHandler.post("/", async (c: Context) => {
     user: body.username as string || "",
     message: body.chat as string || "",
   };
+
   chat.chats.push(newChat);
   for (const ws of wsConnections) {
     if(ws.target.readyState != 1) {
@@ -54,7 +55,7 @@ chatHandler.post("/", async (c: Context) => {
     `);
   }
 
-  return c.render(<ChatItem {...newChat} />);
+  return c.text("OK");
 });
 
 chatHandler.get("/ws", upgradeWebSocket((_c) => {
